@@ -1,0 +1,78 @@
+double median(vector<int> a, vector<int> b)
+{
+    int n=a.size();
+    int m=b.size();
+    int i=0;
+    int j=0;
+    int sum=0;
+    int count=0;
+    
+    int mid=((m+n)/2)+(m+n)%2;
+    int a1=0;
+    int d;
+   // cout<<mid<<endl;
+    while(i<n || j<m)
+    { 
+        count++;
+        //cout<<i<<" "<<j<<endl;
+        
+        if(i<n && j<m)
+        {
+        if(a[i]<=b[j])
+        { 
+            d=a[i];
+            i++;
+            
+        }
+        else if(a[i]>b[j])
+        { 
+            d=b[j];
+            j++;
+        }
+        }
+        else 
+        { 
+            if(i<n)
+            {
+                d=a[i];
+                i++;
+            }
+            else if(j<m)
+            {
+                d=b[j];
+                j++;
+            }
+        }
+        if(count==mid)
+        { 
+          //  cout<<d<<endl;
+            if((m+n)%2==0)
+            { 
+                sum=sum+d;
+                //count++;
+                mid++;
+                if(a1==1)
+                    break;
+                a1=1;
+            }
+            else 
+            { 
+                sum=d;
+                break;
+            }
+            
+        }
+            
+    }
+    double ans;
+    if((n+m)%2==0)
+    { 
+        ans=sum/2.0;
+    }
+    else 
+        ans=sum;
+    return ans;
+        
+    
+    // Write your code here.
+}
