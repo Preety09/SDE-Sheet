@@ -1,0 +1,62 @@
+int ninjaAndLadoos(vector<int> &a, vector<int> &b, int n, int m, int k) {
+    
+
+{
+    
+    int i=0;
+    int j=0;
+    int sum=0;
+    int count=0;
+    
+    int mid=k;
+    int a1=0;
+    int d;
+   // cout<<mid<<endl;
+    while(i<n || j<m)
+    { 
+        count++;
+        //cout<<i<<" "<<j<<endl;
+        
+        if(i<n && j<m)
+        {
+        if(a[i]<=b[j])
+        { 
+            d=a[i];
+            i++;
+            
+        }
+        else if(a[i]>b[j])
+        { 
+            d=b[j];
+            j++;
+        }
+        }
+        else 
+        { 
+            if(i<n)
+            {
+                d=a[i];
+                i++;
+            }
+            else if(j<m)
+            {
+                d=b[j];
+                j++;
+            }
+        }
+        if(count==mid)
+        { 
+          //  cout<<d<<endl;
+            sum=d;
+        }
+            
+    }
+    
+    return sum;
+        
+    
+    // Write your code here.
+}
+
+    // Write your code here.
+}
