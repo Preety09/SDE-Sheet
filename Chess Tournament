@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+int chessTournament(vector<int> a , int n ,  int c){ 
+    int low;
+    int high;
+    int ans;
+   
+        
+        
+    
+    sort(a.begin(),a.end());
+               low=0;
+               high=a[n-1];
+    while(low<=high)
+    { 
+        int mid=(low+high)/2;
+        int count=1;
+        int p=a[0];
+        for(int i=1;i<n;i++)
+        { 
+            if(abs(a[i]-p)>=mid)
+            {
+                count++;
+                p=a[i];
+            }
+        }
+        if(count>=c)
+        { 
+            ans=mid;
+            low=mid+1;
+        }
+        else 
+            high=mid-1;
+        
+    }
+    return ans;
+	// Write your code here
+}
