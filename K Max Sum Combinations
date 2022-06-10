@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> kMaxSumCombination(vector<int> &a, vector<int> &b, int n, int k){
+    vector<int>v;
+    
+    for(int i=0;i<n;i++)
+    { 
+        for(int j=0;j<n;j++)
+            v.push_back(a[i]+b[j]);
+    }
+    sort(v.begin(),v.end());
+    int m=v.size();
+    vector<int>ans;
+    for(int i=0;i<k;i++)
+        ans.push_back(v[m-i-1]);
+    
+    return ans;
+        
+    
+	// Write your code here.
+}
