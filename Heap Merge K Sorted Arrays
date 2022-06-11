@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> mergeKSortedArrays(vector<vector<int>>&a, int k)
+{  
+    priority_queue<int,vector<int>,greater<int>>q;
+    vector<int>v;
+    for(int i=0;i<k;i++)
+    {  
+        for(int j=0;j<a[i].size();j++)
+        { 
+            q.push(a[i][j]);
+        }
+    }
+    while(!q.empty())
+    { 
+        v.push_back(q.top());
+        q.pop();
+    }
+    return v;
+    
+    // Write your code here. 
+}
