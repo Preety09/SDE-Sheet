@@ -1,0 +1,62 @@
+Sample Input 1:
+2
+5 2
+0 1 2 3 4
+1 3
+5 6
+1 1
+1
+1 0  
+Sample Output 1:
+3 7
+-1
+
+class Queue {
+public:
+    int top;
+    int n;
+    int arr[1000001];
+    
+    Queue() { 
+        top=0;
+        n=0;
+        
+        // Implement the Constructor
+    }
+
+    /*----------------- Public Functions of Queue -----------------*/
+
+    bool isEmpty() {
+        if(top>=n)
+            return true;
+        else 
+            return false;
+        
+        // Implement the isEmpty() function
+    }
+
+    void enqueue(int data) {
+        arr[n]=data;
+        n++;
+        
+        // Implement the enqueue() function
+    }
+
+    int dequeue() {
+       // cout<<top<<n<<endl;
+        if(top>=n)
+            return -1;
+        int h=arr[top];
+        top++;
+        return h;
+        //top++;
+        // Implement the dequeue() function
+    }
+
+    int front() {
+        if(top>=n)
+            return -1;
+        return arr[top];
+        // Implement the front() function
+    }
+};
