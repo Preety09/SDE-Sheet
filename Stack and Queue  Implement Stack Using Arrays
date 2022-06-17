@@ -1,0 +1,31 @@
+vector<int> maxXorQueries(vector<int> &arr, vector<vector<int>> &queries){ 
+    int m=queries.size();
+    int n=arr.size();
+    sort(arr.begin(),arr.end());
+    vector<int>v;
+    //int ma=0;
+    for(int i=0;i<m;i++)
+    { 
+      long long int a=queries[i][0];
+        long long int b=queries[i][1];
+        int ma=-1;
+        for(int j=0;j<n;j++)
+        { 
+            if(arr[j]<=b)
+            { 
+                int y=(arr[j]^a);
+               // cout<<y<<" "<<arr[j]<<endl;
+                if(y>ma)
+                    ma=y;
+            }
+            else 
+                break;
+        }
+        v.push_back(ma);
+        
+    }
+    return v;
+        
+    
+    
+}
