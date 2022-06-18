@@ -1,0 +1,36 @@
+Sample Input 1:
+1
+5
+5 -2 9 -7 3
+Sample Output 1:
+9 5 3 -2 -7
+
+void arrange(int a, stack<int>&s)
+{ 
+    if(s.empty() || a>s.top())
+        s.push(a);
+    else 
+    {
+    int b=s.top();
+    s.pop();
+    arrange(a,s);
+    s.push(b);
+    }
+    
+}
+void sort1(stack<int>&s)
+{ 
+    if(s.empty())
+        return;
+    int a=s.top();
+    s.pop();
+    sort1(s);
+    arrange(a,s);
+}
+void sortStack(stack<int> &s)
+{ 
+    sort1(s);
+    
+    
+	// Write your code here
+}
