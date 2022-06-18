@@ -1,0 +1,74 @@
+Sample Input 1:
+6
+1 13
+1 47
+4
+5
+2
+3
+Sample Output 1:
+2
+false
+47
+13
+
+class Stack {
+	// Define the data members.
+ 
+
+   public:
+       queue<int>q;
+    Stack() {
+        // Implement the Constructor.
+    }
+
+    /*----------------- Public Functions of Stack -----------------*/
+
+    int getSize() {
+        return q.size();
+        // Implement the getSize() function.
+    }
+
+    bool isEmpty() {
+        if(q.size()==0)
+            return true;
+        else 
+            return false;
+        // Implement the isEmpty() function.
+    }
+
+    void push(int element) {
+        q.push(element);
+        int n=q.size();
+        for(int i=0;i<n-1;i++)
+        { 
+            int a=q.front();
+            q.pop();
+            q.push(a);
+        }
+        // Implement the push() function.
+    }
+
+    int pop() {
+        if(q.size()==0)
+            return -1;
+        else 
+        {
+            int b=q.front();
+            q.pop();
+            return b;
+            }
+        // Implement the pop() function.
+    }
+
+    int top() {
+         if(q.size()==0)
+            return -1;
+        else 
+        {
+            int b=q.front();
+           
+            return b;
+            }
+        // Implement the top() function.
+    }
