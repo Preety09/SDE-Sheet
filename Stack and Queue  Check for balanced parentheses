@@ -1,0 +1,46 @@
+Sample Input 1 :
+2
+[()]{}{[()()]()}
+[(])
+Sample Output 1 :
+Balanced
+Not Balanced
+
+
+
+bool isValidParenthesis(string exp)
+{ 
+    stack<char>s;
+    
+    int n=exp.length();
+    if(n%2!=0)
+        return false;
+    
+    for(int i=0;i<n;i++)
+    { 
+        if(exp[i]=='[' || exp[i]=='{' || exp[i]=='(')
+        {
+            s.push(exp[i]);
+            }
+        else 
+        { 
+            if(s.empty())
+                return false;
+            char c=s.top();
+            
+            if(exp[i]==']' && c=='[')
+                s.pop();
+            else if(exp[i]==')' && c=='(')
+                s.pop();
+            else if(exp[i]=='}' && c=='{')
+                s.pop();
+            else 
+                return false;
+        }
+    }
+    if(s.empty())
+    return true;
+    else 
+        return false;
+    // Write your code here.
+}
