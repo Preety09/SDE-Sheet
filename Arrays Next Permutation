@@ -1,0 +1,43 @@
+2
+3
+1 2 3
+5
+2 3 1 4 5
+Sample Output 1:
+1 3 2
+2 3 1 5 4
+
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{ 
+    int index1=-1;
+    int index2=-1;
+    for(int i=n-2;i>=0;i--)
+    {
+        if(permutation[i]<permutation[i+1])
+        {
+            index1=i;
+            break;
+        }
+    }
+    if(index1==-1)
+    {
+        reverse(permutation.begin(),permutation.end());
+        return permutation;
+        }
+    else 
+    {
+        for(int i=n-1;i>=0;i--)
+        { 
+            if(permutation[index1]<permutation[i])
+            { 
+                index2=i;
+                break;
+            }
+        }
+        swap(permutation[index1],permutation[index2]);
+        reverse(permutation.begin()+index1+1,permutation.end());
+        return permutation;
+    }
+    //  Write your code here.
+}
