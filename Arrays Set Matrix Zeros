@@ -1,0 +1,35 @@
+If the given grid is this:
+[7, 19, 3]
+[4, 21, 0]
+
+Then the modified grid will be:
+[7, 19, 0]
+[0, 0,  0]
+
+#include <bits/stdc++.h> 
+void setZeros(vector<vector<int>> &matrix)
+{ 
+    int n=matrix.size();
+    int m=matrix[0].size();
+    vector<pair<int,int>>v;
+    for(int i=0;i<n;i++)
+    { 
+        for(int j=0;j<m;j++)
+        { 
+            if(matrix[i][j]==0)
+                v.push_back(make_pair(i,j));
+        }
+    }
+    for(int i=0;i<v.size();i++)
+    {
+        
+        for(int j=0;j<n;j++)
+            matrix[j][v[i].second]=0;
+        for(int k=0;k<m;k++)
+        {
+            matrix[v[i].first][k]=0;
+        }
+    }
+
+	// Write your code here.
+}
