@@ -1,0 +1,124 @@
+Sample Input 1:
+2
+3 3
+1 4 1
+2 2
+2 4    
+3 6
+1 2 7
+1 1 8
+1 2 6
+2 1
+2 5
+2 2 
+Sample Output 1:
+-1 1
+8 -1 6
+
+
+
+#include<bits/stdc++.h>
+class LFUCache
+{
+public:
+    class Node
+    { 
+        public: 
+        int Key;
+        int Value;
+        Node* next;
+        Node* prev;
+        Node(int k,int v)
+        { 
+            Key=k;
+            Value=v;
+        }
+        
+    };
+    Node* head=new Node(1,1);
+    Node* tail =new Node(-1,-1);
+   
+    int n;
+    unordered_map<int,Node*>m;
+    
+    LFUCache(int capacity)
+    {  
+        n=capacity;
+        
+         head->next=tail;
+    tail->prev=head;
+        
+        
+        
+    }
+    void add(Node* ptr,int value,int key)
+    { 
+       // ptr
+          Node* temp=head->next;
+        head->next=ptr;
+            ptr->next=temp;
+            ptr->prev=head;
+            temp->prev=ptr;
+        ptr->Value=value;
+        ptr->Key=key;
+        m[key]=ptr;
+            
+        
+    }
+    void delete1(Node* ptr1)
+    { 
+        Node* temp=ptr1->prev;
+        Node* temp1=ptr1->next;
+        temp->next=temp1;
+        temp1->prev=temp;
+    }
+
+    int get(int key)
+    { 
+        if(m.find(key)!=m.end())
+        { 
+            Node* temp=m[key];
+            int y=temp->Value;
+            delete1(temp);
+            add(temp,y,key);
+            return y;
+            
+            
+            
+        }
+        return -1;
+      
+    }
+
+    void put(int key, int value)
+    {
+        Node* ptr;
+        if(m.find(key)!=m.end())
+        { 
+            ptr=m[key];
+            delete1(ptr);
+       
+        
+            
+            
+        }
+       else if(m.size()==n)
+       { 
+           Node* del=(head->next);
+           m.erase(del->Key);
+           delete1(del);
+           ptr=new Node(key,value);
+       }
+        else 
+        { 
+             ptr=new Node(key,value);
+        }
+        add(ptr,value,key);
+        
+        
+        
+        //cout<<"n"<<n<<endl;
+       
+        // Write your code here
+    }
+};
