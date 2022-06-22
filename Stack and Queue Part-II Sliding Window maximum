@@ -1,0 +1,30 @@
+Sample Input 1 :
+2
+3 1
+1 2 2
+5 2
+4 2 1 4 4
+Sample Output 1 :
+1 2 2
+4 2 4 4
+
+vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
+{  
+    int n=nums.size();
+    vector<int>v;
+    for(int i=0;i<=n-k;i++)
+    {
+        //priority_queue<int>q;
+        int ma=0;
+        for(int j=i;j<k+i;j++)
+        { 
+            if(nums[j]>ma)
+                ma=nums[j];
+            
+        }
+        v.push_back(ma);
+    }
+    return v;
+    
+    //    Write your code here.
+}
