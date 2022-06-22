@@ -1,0 +1,45 @@
+Sample Input 1 :
+2
+10
+1 0 1 2 2 2 2 1 0 2 
+10
+1 2 1 0 1 1 0 0 2 2 
+Sample Output 1 :
+8
+4
+
+
+
+
+#include<bits/stdc++.h>
+int largestRectangle(vector <int>&h) {
+     stack<int>s;
+     int n=h.size();
+    // s.push(0);
+     int ma=0;
+     int area;
+     int l,r,he,w;
+     for(int i=0;i<=n;i++)
+     { 
+         while(!s.empty() && (i==n || h[i]<h[s.top()]))
+         { 
+             // r=i;
+              he=h[s.top()];
+             s.pop();
+             if(s.empty())
+                 w=i;
+             else 
+                  w=(i-s.top()-1);
+             area=w*he;
+             if(area>ma)
+             ma=area;
+             
+         }
+         //cout<<area<<" ";
+         
+         s.push(i);
+     }
+    
+     return ma;
+   // Write your code here.
+ }
