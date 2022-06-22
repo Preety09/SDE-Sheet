@@ -8,6 +8,32 @@ Sample Output 1 :
 1 2 2
 4 2 4 4
 
+#include<bits/stdc++.h>
+vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
+{  
+    int n=nums.size();
+    vector<int>v;
+    deque<int>q;
+    for(int i=0;i<n;i++)
+    {
+        while(!q.empty() && (nums[i]>nums[q.back()]))
+            q.pop_back();
+        q.push_back(i);
+        if(i>=k-1)
+        { 
+            v.push_back(nums[q.front()]);
+            while(!q.empty() && q.front()<=i-k+1)
+                q.pop_front();
+                
+        }
+       
+    }
+    return v;
+    
+    //    Write your code here.
+}
+2nd approach (navie )
+
 vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
 {  
     int n=nums.size();
