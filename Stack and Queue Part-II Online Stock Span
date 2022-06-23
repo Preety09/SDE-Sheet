@@ -1,0 +1,33 @@
+Sample Input 1 :
+2
+3
+1 1 1
+5
+4 2 3 3 6
+Sample Output 1 :
+1 2 3
+1 1 2 3 5
+
+
+#include<bits/stdc++.h>
+vector<int> findSpans(vector<int> &price) { 
+    stack<int>s;
+    vector<int>v;
+    for(int i=0;i<price.size();i++)
+    { 
+        while(!s.empty() && price[i]>=price[s.top()])
+        { 
+            s.pop();
+            
+        }
+        if(!s.empty())
+            v.push_back(i-s.top());
+        else 
+            v.push_back(i+1);
+        s.push(i);
+    }
+    return v;
+    
+    
+    // Write your code here.
+}
