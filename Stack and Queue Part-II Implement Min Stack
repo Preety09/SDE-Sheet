@@ -85,6 +85,93 @@ Sample Output 2 :
 -1 -1 4
 45 19 45 19
 
+// Implement class for minStack.
+#include<bits/stdc++.h>
+class minStack
+{
+	// Write your code here.
+	
+	public:
+     
+    stack<long long >s;
+  long long  mi;
+		
+		// Constructor
+		minStack() 
+		{ 
+            mi=INT_MAX;
+			// Write your code here.
+		}
+		
+		// Function to add another element equal to num at the top of stack.
+		void push(int num)
+		{
+           if(s.empty())
+           { 
+               s.push(num);
+               mi=num;
+           }
+            else if(mi>num)
+            { 
+               
+                s.push(2*num-mi);
+                mi=num;
+            }
+            else 
+                s.push(num);
+			// Write your code here.
+		}
+		
+		// Function to remove the top element of the stack.
+		int pop()
+		{
+            if(s.empty())
+                return -1;
+            else if(s.top()<mi)
+            { 
+                int y=2*mi-s.top();
+                int z=mi;
+                mi=y;
+                s.pop();
+                return z;
+            } 
+            else 
+            { 
+                int p=s.top();
+                s.pop();
+                return p;
+            }
+            
+            
+			// Write your code here.
+		}
+		
+		// Function to return the top element of stack if it is present. Otherwise return -1.
+		int top()
+		{
+            if(s.empty())
+                return -1;
+            if(s.top()<mi)
+                return mi;
+            else 
+                return s.top();
+                
+			// Write your code here.
+		}
+		
+		// Function to return minimum element of stack if it is present. Otherwise return -1.
+		int getMin()
+		{
+            if(s.empty())
+                return -1;
+            else 
+                return mi;
+			// Write your code here.
+		}
+};
+
+2nd approach
+
 
 // Implement class for minStack.
 #include<bits/stdc++.h>
