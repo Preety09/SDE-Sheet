@@ -1,0 +1,50 @@
+tis for row is sorted and first element of the row is greater than last row last element
+#include <vector>
+
+bool findTargetInMatrix(vector < vector < int >> &arr, int m, int n, int target) { 
+    int low=0;
+    int high=m*n-1;
+    while(low<=high)
+    {
+       int  mid=(low+high)/2;
+       // cout<<low<<" "<<mid<<" "<<high<<endl;
+            if(arr[mid/n][mid%n]==target)
+                return true;
+        else if(arr[mid/n][mid%n]>target)
+            high=mid-1;
+        else 
+            low=mid+1;
+        
+        
+    }
+    return false;
+    // Write your code here.
+}
+where every row and column is sorted in increasing order, 
+
+N = 3, M = 3
+mat[][] = 3 30 38 
+         44 52 54 
+         57 60 69
+X = 62
+Output:
+0
+
+int matSearch (int N, int M, int arr[][M], int x)
+{ 
+    int low=0;
+    int high=M-1;
+    while(low<N && high<M)
+    { 
+        if(arr[low][high]==x)
+        return 1;
+        else if(arr[low][high]>x)
+        { 
+            high--;
+        }
+        else 
+        low++;
+    }
+    return 0;
+    
+}
