@@ -1,0 +1,59 @@
+class Solution{
+public:
+    int *findTwoElement(int *arr, int n) { 
+        int *ans=new int[2];
+        int xor1=arr[0];
+	for(int i=1;i<n;i++)
+	{ 
+		xor1=xor1^arr[i];
+	}
+	for(int i=1;i<=n;i++)
+	{ 
+		xor1=xor1^i;
+	}
+	int set=xor1&~(xor1-1);
+	int p=0;
+	int m=0;
+	for(int i=0;i<n;i++)
+	{
+		if(arr[i]&set)
+		{ 
+			p=p^arr[i];
+		}
+		else 
+			m=m^arr[i];
+	}
+	for(int i=1;i<=n;i++)
+	{
+		if(i&set)
+		{ 
+			p=p^i;
+		}
+		else 
+			m=m^i;
+	}
+	int f=0;
+	for(int i=0;i<n;i++)
+	{ 
+		if(p==arr[i])
+		{ 
+			f=1;
+			break;
+		}
+	}
+	if(f==1)
+	{ 
+	    ans[0]=p;
+	    ans[1]=m;
+		//return {m,p}
+	}
+	else
+		{
+		    ans[0]=m;
+		    ans[1]=p;
+		}
+		return ans;
+        
+        // code here
+    }
+};
