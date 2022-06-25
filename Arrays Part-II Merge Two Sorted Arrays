@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+vector<int> ninjaAndSortedArrays(vector<int>& arr1, vector<int>& arr2, int m, int n) {
+    int c=(n+m);
+    int t=(n+m);
+  // cout<<arr1.size()<<endl;
+        int gap=INT_MAX;
+    for(int i=0;i<n;i++)
+        arr1[m+i]=arr2[i];
+//      for(int i=0;i<arr1.size();i++)
+//         cout<<arr1[i]<<"   ";
+    cout<<endl;
+    while(gap!=1)
+    { 
+        gap=c/2+c%2;
+        for(int i=0;i+gap<t;i++)
+        { 
+           
+               if(arr1[i]>arr1[i+gap])
+                   swap(arr1[i],arr1[i+gap]);
+               
+          
+        }
+        c=gap;
+        
+    }
+    //vector<int>v;
+   
+    
+    return arr1;
+	// Write your code here.
+}
