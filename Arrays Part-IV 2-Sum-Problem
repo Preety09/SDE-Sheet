@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+vector<vector<int>> pairSum(vector<int> &arr, int s){ 
+    
+    vector<vector<int>>ans;
+    sort(arr.begin(),arr.end());
+    
+    
+    int j=0;
+    for(int i=0;i<arr.size();i++)
+    { 
+        int y=s-arr[i];
+        for(int j=i+1;j<arr.size();j++)
+        { 
+            vector<int>v;
+            if(y==arr[j])
+            { 
+                v.push_back(min(y,arr[i]));
+                v.push_back(max(y,arr[i]));
+                ans.push_back(v);
+                
+            }
+            if(arr[j]>y)
+                break;
+        }
+        
+    }
+    
+    return ans;
+   // Write your code here.
+}
