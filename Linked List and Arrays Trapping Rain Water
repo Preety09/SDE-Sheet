@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+long long int getTrappedWater(long *arr, int n){ 
+    vector<long>l;
+    vector<long>r;
+   long m1=0;
+  long m2=0;
+    
+    for(int i=0;i<n;i++)
+    { 
+        if(arr[i]>m1)
+            m1=arr[i];
+        l.push_back(m1);
+    }
+    for(int i=n-1;i>=0;i--)
+    { 
+        if(arr[i]>m2)
+            m2=arr[i];
+        r.push_back(m2);
+        
+        
+    }
+    reverse(r.begin(),r.end());
+    long long int sum=0;
+    for(int i=0;i<n;i++)
+    { 
+        sum=(sum+min(l[i],r[i])-arr[i]);
+    }
+    return sum;
+    // Write your code here.
+}
