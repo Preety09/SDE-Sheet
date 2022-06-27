@@ -1,0 +1,57 @@
+Given a binary array 'ARR' of size 'N', your task is to find the longest sequence of continuous 1’s that can be formed by replacing at-most 'K' zeroes by ones. Return the length of this longest sequence of continuous 1’s.
+Input Format:
+The first line contains an integer 'T' which denotes the number of test cases or queries to be run. Then, the T test cases follow.
+
+The first line of each test case or query contains an integer 'N' representing the size of the array (ARR).
+
+The second line contains 'N' single space-separated binary values, representing the elements in the array.
+
+The third line contains the value of 'K'.
+Output Format:
+For each test case, return the length of the longest subarray whose all elements are 1.
+Note:
+You do not need to print anything, it has already been taken care of. Just implement the given function.
+Constraints:
+1 <= T <= 10
+1 <= N <= 5 * 10^4 
+0 <= Arr[i] <= 1
+0 <= K <= N
+
+Time Limit: 1 sec
+Sample Input 1:
+1
+7
+1 0 0 1 1 0 1   
+1
+Sample Output 1:
+4 
+
+
+#include<bits/stdc++.h>
+int longestSubSeg(vector<int> &arr , int n, int k){ 
+    int i=0;
+    int j=0;
+    int flip=0;
+    int ans=0;
+    while(i<n)
+    { 
+        if(arr[i]==0)
+        { 
+            flip++;
+            
+        }
+        while(flip>k)
+        { 
+            if(arr[j]==0)
+            { 
+                flip--;
+            }
+            j++;
+        }
+        ans=max(ans,i-j+1);
+        i++;
+    }
+    return ans;
+    
+    // Write your code here.
+}
