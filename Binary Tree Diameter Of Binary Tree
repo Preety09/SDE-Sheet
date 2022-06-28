@@ -1,0 +1,38 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+#include<bits/stdc++.h>
+int find(TreeNode<int> *root, int &ma)
+{ 
+    if(root==NULL)
+        return 0;
+    int lh=find(root->left,ma);
+    int rh=find(root->right,ma);
+    ma=max(ma,lh+rh);
+        return max(lh,rh)+1;
+}
+int diameterOfBinaryTree(TreeNode<int> *root)
+{ 
+   // TreeNode *ptr=root[0];
+    int ma=0;
+    find(root,ma);
+    return ma;
+    
+	// Write Your Code Here.
+}
