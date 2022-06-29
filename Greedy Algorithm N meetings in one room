@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+
+
+
+vector<int> maximumMeetings(vector<int> &start, vector<int> &end) { 
+   
+    vector<int>ans;
+    vector<pair<int,int>>v;
+    
+    
+    for(int i=0;i<start.size();i++)
+    {
+        v.push_back(make_pair(end[i],i));
+        
+       
+    }
+    
+    sort(v.begin(),v.end());
+    int k=v[0].first;
+    ans.push_back(v[0].second+1);
+     
+    
+    
+    //ans.push_back(m[v[0].first,v[0].second]+1);
+    for(int i=1;i<v.size();i++)
+    {
+       // cout<<k<<" "<<v[i].second<<endl;
+        if(k<start[v[i].second])
+        {
+            
+            k=v[i].first;
+            ans.push_back(v[i].second+1);
+        }
+    }
+    return ans;
+    
+    
+    
+    // Write your code here.
+}
