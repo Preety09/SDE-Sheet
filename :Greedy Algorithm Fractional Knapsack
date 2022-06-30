@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+bool camp(pair<int,int>a,pair<int,int>b)
+{ 
+    double r1=(double)a.second/(double)a.first;
+
+   double r2=(double)b.second/(double)b.first;
+
+   
+
+   return r1>r2;
+}
+double maximumValue (vector<pair<int, int>>&v, int n, int w)
+{ 
+    
+    sort(v.begin(),v.end(),camp);
+    double value=0;
+    int i=0;
+    while(w!=0 && i<n)
+    { 
+       /// cout<<v[i].first<<" "<<v[i].second<<endl;
+        if(w>=v[i].first)
+        { 
+            value=value+(double)v[i].second;
+            w=w-v[i].first;
+            
+        }
+        else 
+        { 
+            value=value+((double)v[i].second/(double)v[i].first)*w;
+            w=0; 
+            break;
+        }
+        i++;
+        
+    }
+    return value;
+    
+    
+    // Write your code here.
+    // ITEMS contains {weight, value} pairs.
+}
