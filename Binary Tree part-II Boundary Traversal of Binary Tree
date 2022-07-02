@@ -1,0 +1,95 @@
+/************************************************************
+
+    Following is the Binary Tree node structure:
+    
+    template <typename T>
+    class TreeNode {
+        public :
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+
+        ~TreeNode() {
+            if(left)
+                delete left;
+            if(right)
+                delete right;
+        }
+    };
+
+************************************************************/
+bool isleaf(TreeNode<int>* root)
+{ 
+    if(root->left==NULL && root->right==NULL)
+        return true;
+    else 
+        return false;
+    
+}
+void leftt(TreeNode<int>* root,vector<int>&v)
+{ 
+    TreeNode<int>* root1=root->left;
+    while(root1)
+    { 
+        if(!isleaf(root1))
+        v.push_back(root1->data);
+        if(root1->left)
+            root1=root1->left;
+        else 
+            root1=root1->right;
+    }
+   
+}
+void rightt(TreeNode<int>* root,vector<int>&v)
+{ 
+    vector<int>temp;
+    TreeNode<int>* root1=root->right;
+    while(root1)
+    { 
+         if(!isleaf(root1))
+        temp.push_back(root1->data);
+        if(root1->right)
+            root1=root1->right;
+        else 
+            root1=root1->left;
+    }
+    for(int i=temp.size()-1;i>=0;i--)
+        v.push_back(temp[i]);
+   
+}
+ void leaf(TreeNode<int>* root,vector<int>&v)
+ { 
+     if(isleaf(root))
+     { 
+         v.push_back(root->data);
+         return;
+     }
+     if(root->left)
+         leaf(root->left,v);
+         if(root->right)
+             leaf(root->right,v);
+ }
+
+vector<int> traverseBoundary(TreeNode<int>* root){ 
+    vector<int>v;
+    
+    if(root==NULL)
+        return v;
+    v.push_back(root->data);
+    if(isleaf(root))
+        return v;
+    
+    leftt(root,v);
+    leaf(root,v);
+    rightt(root,v);
+    
+    return v;
+    
+    // Write your code here.
+}
