@@ -1,0 +1,72 @@
+/************************************************************
+
+    Following is the Binary Tree node structure:
+
+    class BinaryTreeNode
+    {
+    public :
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) 
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+
+************************************************************/
+#include<bits/stdc++.h>
+vector<vector<int>> getTreeTraversal(BinaryTreeNode<int> *root){ 
+    vector<int>in;
+    vector<int>pre;
+    vector<int>po;
+    vector<vector<int>>ans;
+    if(root==NULL)
+        return ans;
+    stack<pair<BinaryTreeNode<int> *,int>>q;
+    q.push({root,0});
+    while(!q.empty())
+    { 
+        auto it=q.top();
+        BinaryTreeNode<int> * a=it.first;
+        int b=it.second;
+        q.pop();
+      //  cout<<a->data<<" "<<b<<endl;
+        //q.pop()
+            if(b==0)
+            {
+               
+                pre.push_back(a->data);
+                 b=b+1;
+            q.push({a,b});
+                if(a->left!=NULL)
+                    q.push({a->left,0});
+                
+            }
+        else if(b==1)
+        {
+           
+            in.push_back(a->data);
+             b=b+1;
+            q.push({a,b});
+            if(a->right!=NULL)
+                q.push({a->right,0});
+        }
+        else if(b==2)
+        { 
+            po.push_back(a->data);
+           // q.pop();
+        }
+    }
+    ans.push_back(in);
+    ans.push_back(pre);
+    ans.push_back(po);
+    return ans;
+    
+    
+        
+    // Write your code here.
+}
