@@ -1,0 +1,36 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+void find(TreeNode<int> *root,int level,vector<int>&v)
+{ 
+    if(root==NULL)
+        return;
+    if(v.size()==level)
+        v.push_back(root->data);
+    find(root->left,level+1,v);
+    find(root->right,level+1,v);
+}
+
+vector<int> getLeftView(TreeNode<int> *root)
+{ 
+    vector<int>v;
+    find(root,0,v);
+    return v;
+    //    Write your code here
+}
