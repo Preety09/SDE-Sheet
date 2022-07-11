@@ -1,0 +1,72 @@
+/*************************************************************
+
+    Following is the Binary Tree node structure
+
+    template <typename T>
+
+    class BinaryTreeNode
+    {
+    public :
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+
+        ~BinaryTreeNode() {
+            if (left)
+            {
+                delete left;
+            }
+            if (right)
+            {
+                delete right;
+            }
+        }
+    };
+
+*************************************************************/
+#include<bits/stdc++.h>
+pair<int,int> predecessorSuccessor(BinaryTreeNode<int>* root, int key)
+{ 
+    int pred=-1;
+    int suc=-1;
+    pair<int,int>p;
+    BinaryTreeNode<int>* root1=root;
+    while(root!=NULL)
+    { 
+        
+        if(key>root->data)
+        {  
+            pred=root->data;
+            root=root->right;
+        }
+        else
+        {
+           // suc=root->data;
+            root=root->left;
+        }
+    }
+    while(root1!=NULL)
+    { 
+        
+        if(key>=root1->data)
+        {  
+           // pred=root->data;
+            root1=root1->right;
+        }
+        else
+        {
+           suc=root1->data;
+            root1=root1->left;
+        }
+    }
+    p.first=pred;
+    p.second=suc;
+    return p;
+    // Write your code here.
+}
