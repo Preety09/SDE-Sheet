@@ -1,0 +1,120 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+#include<bits/stdc++.h>
+string serializeTree(TreeNode<int> *root)
+{ 
+    string s="";
+    if(root==NULL)
+    {
+       
+        return s;
+    }
+    queue<TreeNode<int>*>q;
+    q.push(root);
+    while(!q.empty())
+    {
+        int n=q.size();
+        for(int i=0;i<n;i++)
+        { 
+            TreeNode<int> *ptr=q.front();
+            q.pop();
+            if(ptr==NULL)
+                s=s+"-1,";
+            else
+            {
+            s=s+to_string(ptr->data)+',';
+           // cout<<ptr->data<<" ";
+            
+                q.push(ptr->left);
+                
+            
+            
+            
+                q.push(ptr->right);
+        }
+        }
+    }
+    return s;
+ //    Write your code here for serializing the tree
+
+}
+
+TreeNode<int>* deserializeTree(string &s)
+{
+  
+    //int n=s.size();
+    queue<TreeNode<int>*>q;
+    if(s.length()==0)
+        return NULL;
+     TreeNode<int> *temp;
+   // cout<<endl;
+    stringstream s1(s);
+    string str;
+    getline(s1,str,',');
+   
+    TreeNode<int>* root=new TreeNode<int>(stoi(str));
+    q.push(root);
+    
+    
+   
+   
+        
+       while(!q.empty())
+        { 
+            TreeNode<int> *ptr=q.front();
+           
+           q.pop();
+             getline(s1,str,',');
+           if(str=="-1")
+           { 
+               ptr->left=NULL;
+           }
+           else 
+           { 
+               temp=new TreeNode<int>(stoi(str));
+               ptr->left=temp;
+               q.push(temp);
+           }
+            getline(s1,str,',');
+           if(str=="-1")
+           { 
+               ptr->right=NULL;
+           }
+           else 
+           { 
+               temp=new TreeNode<int>(stoi(str));
+               ptr->right=temp;
+               q.push(temp);
+           }
+           
+           
+           
+           
+        }
+        
+    
+    return root;
+    
+ //    Write your code here for deserializing the tree
+
+}
+
+
+
