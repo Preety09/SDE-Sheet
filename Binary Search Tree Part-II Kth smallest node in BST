@@ -1,0 +1,76 @@
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+void find(TreeNode<int> *root,vector<int>&v)
+{ 
+    if(root==NULL)
+        return;
+    find(root->left,v);
+    v.push_back(root->data);
+    find(root->right,v);
+    
+}
+
+int kthSmallest(TreeNode<int> *root, int k)
+{  
+   
+   
+//     while(root!=NULL)
+//     { 
+//        // cout<<k<<endl;
+//         if(root->left==NULL)
+//         { 
+//             k=k-1;
+//           // cout<<k<<" "<<root->data<<endl;
+//             if(k==0)
+//                 return root->data;
+//             root=root->right;
+//         }
+//         else 
+//         { 
+//            TreeNode<int> *prev=root->left;
+//            // cout<<prev->data<<endl;
+//             while(prev->right!=NULL && prev->right!=root)
+//             {
+//                 prev=prev->right;
+//             }
+//             if(prev->right==NULL)
+//             {
+//                 //cout<<root->data<<endl;
+//                 prev->right=root;
+//                 root=root->left;
+//                // cout<<root->data;
+//              }
+//             else 
+//             { 
+//                 k=k-1;
+//                 if(k==0)
+//                     return root->data;
+//                 prev->right=NULL;
+//                     root=root->right;
+                
+//             }
+//         }
+        
+//     }
+    vector<int>v;
+    find(root,v);
+    return v[k-1];
+	//	Write the code here.
+}
