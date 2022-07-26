@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+void find(int col,int n,vector<vector<int>>&ans,vector<int>&lr,vector<int>&ud,vector<int>&ld,vector<int>&v)
+{
+    if(col==n)
+    {
+        ans.push_back(v);
+        return;
+        
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(lr[i]==0 && ud[n-1+col-i]==0 && ld[i+col]==0)
+        {
+            lr[i]=1;
+            ud[n-1+col-i]=1;
+            ld[i+col]=1;
+            v[col+i+i*(n-1)]=1;
+            find(col+1,n,ans,lr,ud,ld,v);
+                
+             v[col+i+i*(n-1)]=0;
+             lr[i]=0;
+            ud[n-1+col-i]=0;
+            ld[i+col]=0;
+            
+        }
+    }
+    return;
+    
+}
+vector<vector<int>> solveNQueens(int n) {
+    vector<vector<int>>ans;
+    vector<int>v(n*n,0);
+    vector<int>leftr(n,0);
+    vector<int>ud(2*n-1,0);
+    vector<int>ld(2*n-1,0);
+    find(0,n,ans,leftr,ud,ld,v);
+    sort(ans.begin(),ans.end());
+    reverse(ans.begin(),ans.end());
+    return ans;
+    
+    // Write your code here.
+}
