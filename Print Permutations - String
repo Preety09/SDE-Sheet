@@ -1,0 +1,25 @@
+void find(string &s,vector<string>&v,string ans,int index)
+{ 
+    if(index==s.length())
+    { 
+        v.push_back(s);
+        return;
+    }
+    
+    for(int i=index;i<s.length();i++)
+    {
+        swap(s[i],s[index]);
+        
+        find(s,v,ans,index+1);
+        //find(s,v,ans,i);
+        swap(s[i],s[index]);
+    }
+}
+vector<string> findPermutations(string &s) {  
+vector<string>v;
+      string ans="";
+      find(s,v,ans,0);
+      return v;                                      
+                                                 
+    // Write your code here.
+}
