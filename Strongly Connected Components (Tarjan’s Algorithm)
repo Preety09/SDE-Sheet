@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+void topo(int i,vector<int>v1[],vector<int>&vis,stack<int>&s)
+{
+    vis[i]=1;
+    for(auto it:v1[i])
+    { 
+        if(vis[it]==0)
+            topo(it,v1,vis,s);
+    }
+    s.push(i);
+    
+    
+}
+void dfs(int i,vector<int>v2[],vector<int>&vis,vector<int>&v)
+{ 
+    v.push_back(i);
+    vis[i]=1;
+    for(auto it:v2[i])
+    {
+        if(vis[it]==0)
+            dfs(it,v2,vis,v);
+    }
+    
+}
+vector<vector<int>> stronglyConnectedComponents(int n, vector<vector<int>> &edges)
+{  
+    vector<int>v1[n];
+    vector<int>v2[n];
+    for(int i=0;i<edges.size();i++)
+    {
+        v1[edges[i][0]].push_back(edges[i][1]);
+        v2[edges[i][1]].push_back(edges[i][0]);
+    }
+    vector<int>vis(n,0);
+    stack<int>s;
+    for(int i=0;i<n;i++)
+    {
+        if(vis[i]==0)
+        
+    topo(i,v1,vis,s);
+    }
+    vector<int>vis1(n,0);
+    vector<vector<int>>ans;
+    while(!s.empty())
+    { 
+        int y=s.top();
+        s.pop();
+        vector<int>v;
+        if(vis1[y]==0)
+        {
+        dfs(y,v2,vis1,v);
+        ans.push_back(v);
+        }
+    }
+    return ans;
+    
+    // Write your code here.
+}
