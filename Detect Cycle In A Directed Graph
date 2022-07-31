@@ -1,0 +1,45 @@
+void dfs(int n,vector<int>&v,vector<int>&v1,vector<int>p[],int &y)
+{
+    if(v[n]==1 && v1[n]==1)
+    {
+        y=1;
+        return;
+    }
+    
+    v[n]=1;
+    v1[n]=1;
+    for(auto it:p[n])
+    {
+             
+            dfs(it,v,v1,p,y);
+           
+        
+         
+    }
+    v1[n]=0;
+    //return 0;
+}
+int detectCycleInDirectedGraph(int n, vector < pair < int, int >> & edges) {
+    vector<int>v(n+1,0);
+    vector<int>v1(n+1,0);
+    int y=0;
+    vector<int>p[n+1];
+    for(int i=0;i<edges.size();i++)
+    {
+        p[edges[i].first].push_back(edges[i].second);
+       // p[edges[i].second].push_back(edges[i].first);
+    }
+    for(int i=1;i<=n;i++)
+    {
+        if(v[i]==0)
+        {
+             dfs(i,v,v1,p,y);
+        if(y==1)
+            return y;
+        }
+    }
+    return y;
+    
+    
+  // Write your code here.
+}
