@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+string cycleDetection (vector<vector<int>>& edges, int n, int m)
+{ 
+    vector<int>v[n+1];
+    for(int i=0;i<edges.size();i++)
+    {
+        v[edges[i][0]].push_back(edges[i][1]);
+        v[edges[i][1]].push_back(edges[i][0]);
+    }
+    vector<int>vis(n+1,0);
+    queue<int>q;
+    for(int i=1;i<=n;i++)
+    {
+        if(vis[i]==0)
+        {
+    q.push(i);
+    while(!q.empty())
+    {
+        int y=q.front();
+        q.pop();
+        if(vis[y]==1)
+            return "Yes";
+        vis[y]=1;
+        for(auto it:v[y])
+        {
+            if(vis[it]==0)
+                q.push(it);
+        }
+        
+    }
+        }
+    }
+    return "No";
+    // Write your code here.
+}
