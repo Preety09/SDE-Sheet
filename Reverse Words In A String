@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+string reverseString(string str)
+{
+    vector<string> v;
+
+   string s;
+
+   string t;
+
+   stringstream x(str);
+
+   
+
+   while(getline(x,t,' '))
+
+   {
+
+       if(t!="")
+
+       v.push_back(t);
+
+   }
+
+   
+
+   for(int i=v.size()-1;i>=0;i--)
+
+   {
+
+       s.append(v[i]);
+
+       if(i!=0)
+
+       s.append(" ");
+
+   }
+
+   
+
+   return s;
+    // Write your code here.
+}
