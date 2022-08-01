@@ -1,0 +1,93 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+ Node* reverse(Node* head)
+    {
+     Node* ptr=NULL;
+        if(head==NULL || head->next==NULL)
+            return head;
+        while(head!=NULL)
+        {  
+            Node* c=head->next;
+            head->next=ptr;
+            ptr=head;
+            head=c;
+        }
+        return ptr;
+    }
+Node *getListAfterReverseOperation(Node *head, int n, int b[]){
+	 Node* dummpy= new Node(0);
+            Node* ans=dummpy;
+        int f=1;
+    for(int i=0;i<n;i++)
+                {
+                    int p=b[i];
+        if(p==0)
+            continue;
+            
+                Node *ptr=head;
+        if(ptr==NULL)
+            break;
+        
+        Node *pp=head;
+        
+               // cout<<"ptr val"<<ptr->val<<endl;
+                
+                while(p--)
+                { 
+                    if(head==NULL)
+                    { 
+                        f=0;
+                        break;
+                    }
+                    pp=head;
+                    head=head->next;
+                   // if(head!=NULL)
+                   //  cout<<"head val"<<head->val<<endl;
+                }
+//                 if(f==0 || head==NULL)
+//                     dummpy->next=ptr;
+                
+                
+                Node* ptr1=pp;
+                    
+                    if(ptr1!=NULL)
+                    {
+                        head=ptr1->next;
+                ptr1->next=NULL;
+                    }
+                Node* temp=reverse(ptr);
+                dummpy->next=temp;
+                dummpy=ptr;
+                
+            }
+    if(head!=NULL)
+    {
+        dummpy->next=head;
+    }
+    
+            
+        return ans->next;
+        
+        
+        
+        
+        
+    }
+
+	// Write your code here.
