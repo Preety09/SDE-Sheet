@@ -1,0 +1,40 @@
+int find(vector<int>m,int i)
+{
+    int low=0;
+    int high=m.size()-1;
+    while(low<=high)
+    {
+        int mid=(low+high);
+        if(m[mid]<=i)
+        {
+            low=mid+1;
+        }
+        else 
+            high=mid-1;
+    }
+    return low;
+}
+int getMedian(vector<vector<int>> &matrix)
+{ 
+    int n=matrix.size();
+    int m=matrix[0].size();
+    int low=1;
+    int high=1e9;
+    while(low<=high)
+    {
+        int mid=(low+high)/2;
+        int count=0;
+        for(int i=0;i<matrix.size();i++)
+        {
+            count=count+find(matrix[i],mid);
+        }
+        if(count<=(n*m)/2)
+            low=mid+1;
+        else 
+            high=mid-1;
+        
+    }
+    return low;
+    
+    // Write your code here.
+}
