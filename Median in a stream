@@ -1,0 +1,48 @@
+void sort1(vector<int>&v)
+{
+    
+    int n=v.size()-1;
+    if(n==0)
+        return;
+    
+    while(n>=1 && v[n]<v[n-1])
+    {
+        swap(v[n],v[n-1]);
+        n--;
+    }
+    
+}
+vector<int> findMedian(vector<int> &arr, int n){
+    vector<int>v;
+    vector<int>isort;
+	for(int i=0;i<n;i++)
+    {
+        isort.push_back(arr[i]);
+        
+        int low=0;
+        int high=i;
+            if(high==0)
+                v.push_back(arr[0]);
+        else
+        {
+            sort1(isort);
+        int mid=(low+high)/2;
+           // cout<<mid<<" ";
+            if(i%2!=0)
+            {
+                int a=mid;
+                int b=mid+1;
+                int c=(isort[a]+isort[b])/2;
+                v.push_back(c);
+            }
+            else 
+            { 
+                v.push_back(isort[mid]);
+            }
+        }
+        
+        
+    }
+    return v;
+	// Write your code here 
+}
