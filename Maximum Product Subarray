@@ -1,0 +1,40 @@
+int maximumProduct(vector<int> &arr, int n)
+{
+    int ma=INT_MIN;
+    int ma1=INT_MIN;
+    int f=0;
+    int pro=1;
+    for(int i=0;i<n;i++)
+    {
+        pro=pro*arr[i];
+        if(arr[i]==0)
+        {
+            f=1;
+            pro=1;
+            continue;
+        }
+        ma=max(pro,ma);
+    }
+    pro=1;
+    for(int j=n-1;j>=0;j--)
+    {
+        pro=pro*arr[j];
+        if(arr[j]==0)
+        {
+            f=1;
+            pro=1;
+            f=1;
+              continue;
+        }
+        ma1=max(pro,ma1);
+    }
+    //int mal,mar;
+    if(f==1)
+    {
+        return max(max(ma,ma1),0);
+    }
+    
+        return max(ma,ma1);
+    
+	// Write your code here
+}
