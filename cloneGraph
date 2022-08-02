@@ -1,0 +1,13 @@
+unordered_map<graphNode*,graphNode*> m;
+graphNode *cloneGraph(graphNode *node)
+{ 
+    if(!node) return NULL;
+        if(m.count(node)!=0) return m[node];
+        graphNode* copy_node = new graphNode(node->data);
+        m[node]=copy_node;
+        for(auto c:node->neighbours)
+            copy_node->neighbours.push_back(cloneGraph(c));
+        return copy_node;
+    
+    // Write your code here.
+}
