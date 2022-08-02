@@ -1,0 +1,25 @@
+void find(int x,int y,int nc,int oc,vector<vector<int>> &image,vector<vector<int>> &vis)
+{
+    int n=image.size();
+    int m=image[0].size();
+    if(x<n && y<m && x>=0 && y>=0 && image[x][y]==oc && vis[x][y]==0 )
+    {
+        image[x][y]=nc;
+        vis[x][y]=1;
+         find(x-1,y,nc,oc,image,vis);
+         find(x,y-1,nc,oc,image,vis);
+         find(x+1,y,nc,oc,image,vis);
+         find(x,y+1,nc,oc,image,vis);
+        
+    }
+    return;
+}
+vector<vector<int>> floodFill(vector<vector<int>> &image, int x, int y, int newColor)
+{ 
+    int nc=newColor;
+    int oc=image[x][y];
+    vector<vector<int>>vis(image.size(),vector<int>(image[0].size(),0));
+    find(x,y,nc,oc,image,vis);
+    return image;
+    // Write your code here.
+}
