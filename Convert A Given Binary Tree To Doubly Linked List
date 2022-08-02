@@ -1,0 +1,41 @@
+/*************************************************************
+ 
+    Following is the Binary Tree node structure
+
+    class BinaryTreeNode 
+    {
+    public : 
+        T data;
+        BinaryTreeNode<T> *left;
+        BinaryTreeNode<T> *right;
+
+        BinaryTreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+*************************************************************/
+BinaryTreeNode<int>* ptr=NULL;
+void find(BinaryTreeNode<int>* root)
+{
+    if(root==NULL)
+        return;
+    find(root->right);
+    root->right=ptr;
+    if(ptr)
+        ptr->left=root;
+    ptr=root;
+    find(root->left);
+}
+
+BinaryTreeNode<int>* BTtoDLL(BinaryTreeNode<int>* root) {
+    find(root);
+    root=ptr;
+    ptr=NULL;
+    return root;
+    
+    
+    // Write your code here
+}
