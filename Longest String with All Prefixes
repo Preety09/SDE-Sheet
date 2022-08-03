@@ -1,0 +1,115 @@
+struct Node {
+
+   Node * link[26];
+
+   bool flag=false;
+
+   void put(char ch,Node * node) {
+
+       link[ch-'a']=node;
+
+   }
+
+   bool  search (char ch) {
+
+       if(link[ch-'a']) return true;
+
+       return false;
+
+   }
+
+   Node * getNode(char ch) {
+
+       return link[ch-'a'];
+
+   }
+
+   void setEnd() {
+
+       flag =true;
+
+   }
+
+   bool isEnd() {
+
+       return flag;
+
+   }  
+
+};
+
+class Trie {
+
+   private: Node *root;
+
+   public:Trie() {
+
+       root=new Node();
+
+   }
+
+   void insert(string s) {
+
+      Node *node =root;
+
+       for(int i=0;i<s.length();i++) {
+
+           if(!node->search(s[i])) {
+
+               node->put(s[i],new Node());
+
+           }
+
+           node=node->getNode(s[i]);
+
+       }
+
+       node->setEnd();
+
+   }
+    bool isCompleteString(string word,string maxString) {
+
+       Node * node =root;
+
+       for(int i=0;i<word.length();++i) {
+
+           if(!node->search(word[i])) return false;
+
+           node=node->getNode(word[i]);
+
+           if(!node->isEnd()) return false;
+
+       }
+
+     return true;
+
+   }
+
+};
+string completeString(int n, vector<string> &a)
+{
+    
+      Trie trie;
+
+   for(auto word:a) {
+
+       trie.insert(word);
+
+   }
+
+    string maxString="";
+
+   for(auto word:a) {
+
+       if(trie.isCompleteString(word,maxString)) {
+
+           if((word.length()==maxString.length() && word<maxString ) || (word.length()>maxString.length() )) maxString =word;
+
+       }
+
+   }
+
+   return maxString==""?"None":maxString;
+    
+    // Write your code here.
+}
