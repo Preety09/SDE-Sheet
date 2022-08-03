@@ -1,0 +1,26 @@
+vector<vector<int>> helper
+(vector<int>&v,int i)
+{    
+    if(i>=v.size()) 
+        return {{}};   
+    vector<vector<int>>pans=helper(v,i+1); 
+    vector<vector<int>>ans; 
+    for(auto it1:pans)    {  
+        ans.push_back(it1);           } 
+    for(auto it2 :pans)
+    {    
+        vector<int>temp;    
+        temp.push_back(v[i]);  
+        for(auto it3:it2)   
+        {        
+            temp.push_back(it3);           
+        }    ans.push_back(temp);
+    } 
+    return ans;
+}
+vector<vector<int>> pwset(vector<int>v)
+{ 
+    return helper(v,0);
+    
+    //Write your code here
+}
